@@ -1,9 +1,5 @@
 <?php
-$conexion = new mysqli("localhost", "root", "", "escuela");
-
-if ($conexion->connect_error) {
-    die("Conexión fallida: " . $conexion->connect_error);
-}
+include 'conexion.php';
 
 $nombre = $_POST['nombre'];
 $materia = $_POST['materia'];
@@ -15,6 +11,7 @@ $stmt->bind_param("ssi", $nombre, $materia, $calificacion);
 
 if ($stmt->execute()) {
     header("Location: index.php");
+    exit();
 } else {
     echo "Error al guardar: " . $conexion->error;
 }
